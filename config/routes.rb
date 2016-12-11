@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'home/index'
-
-  root 'home#index'
 
   get 'graph/index'
   get 'graph/data', :defaults => { :format => 'json' } # Must do this!
