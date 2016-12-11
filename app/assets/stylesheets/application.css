@@ -45,7 +45,7 @@
 
  /* example 2 */
 
- body {
+ /*body {
    background: #222;
    margin: auto;
    width: 960px;
@@ -69,4 +69,29 @@
 
  #credit a {
    color: inherit;
- }
+ }*/
+
+ /* example 3 */
+/*
+ .counties {
+  fill: none;
+}
+
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}*/
+
+/* Example 3 chloropleth */
+
+/* example 4 tutorials */
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}

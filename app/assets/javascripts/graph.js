@@ -80,112 +80,169 @@ $( document ).ready(function() {
   //        + (p[0] < 0 ? format(-p[0]) + "°W" : format(p[0]) + "°E");
   // }
 
+  // // EXAMPLE 2: A TICKING CLOCK
 
-  var width = 960,
-      height = 800,
-      radius = Math.min(width, height) / 1.9,
-      spacing = .09;
+  // var width = 960,
+  //     height = 800,
+  //     radius = Math.min(width, height) / 1.9,
+  //     spacing = .09;
+  //
+  // var formatSecond = d3.time.format("%-S seconds"),
+  //     formatMinute = d3.time.format("%-M minutes"),
+  //     formatHour = d3.time.format("%-H hours"),
+  //     formatDay = d3.time.format("%A"),
+  //     formatDate = function(d) { d = d.getDate(); switch (10 <= d && d <= 19 ? 10 : d % 10) { case 1: d += "st"; break; case 2: d += "nd"; break; case 3: d += "rd"; break; default: d += "th"; break; } return d; },
+  //     formatMonth = d3.time.format("%B");
+  //
+  // var color = d3.scale.linear()
+  //     .range(["hsl(-180,60%,50%)", "hsl(180,60%,50%)"])
+  //     .interpolate(function(a, b) { var i = d3.interpolateString(a, b); return function(t) { return d3.hsl(i(t)); }; });
+  //
+  // var arcBody = d3.svg.arc()
+  //     .startAngle(0)
+  //     .endAngle(function(d) { return d.value * 2 * Math.PI; })
+  //     .innerRadius(function(d) { return d.index * radius; })
+  //     .outerRadius(function(d) { return (d.index + spacing) * radius; })
+  //     .cornerRadius(6);
+  //
+  // var arcCenter = d3.svg.arc()
+  //     .startAngle(0)
+  //     .endAngle(function(d) { return d.value * 2 * Math.PI; })
+  //     .innerRadius(function(d) { return (d.index + spacing / 2) * radius; })
+  //     .outerRadius(function(d) { return (d.index + spacing / 2) * radius; });
+  //
+  // var svg = d3.select("body").append("svg")
+  //     .attr("width", width)
+  //     .attr("height", height)
+  //   .append("g")
+  //     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+  //
+  // var field = svg.selectAll("g")
+  //     .data(fields)
+  //   .enter().append("g");
+  //
+  // field.append("path")
+  //     .attr("class", "arc-body");
+  //
+  // field.append("path")
+  //     .attr("id", function(d, i) { return "arc-center-" + i; })
+  //     .attr("class", "arc-center");
+  //
+  // field.append("text")
+  //     .attr("dy", ".35em")
+  //     .attr("dx", ".75em")
+  //     .style("text-anchor", "start")
+  //   .append("textPath")
+  //     .attr("startOffset", "50%")
+  //     .attr("class", "arc-text")
+  //     .attr("xlink:href", function(d, i) { return "#arc-center-" + i; });
+  //
+  // tick();
+  //
+  // d3.select(self.frameElement).style("height", height + "px");
+  //
+  // function tick() {
+  //   if (!document.hidden) field
+  //       .each(function(d) { this._value = d.value; })
+  //       .data(fields)
+  //       .each(function(d) { d.previousValue = this._value; })
+  //     .transition()
+  //       .ease("elastic")
+  //       .duration(500)
+  //       .each(fieldTransition);
+  //
+  //   setTimeout(tick, 1000 - Date.now() % 1000);
+  // }
+  //
+  // function fieldTransition() {
+  //   var field = d3.select(this).transition();
+  //
+  //   field.select(".arc-body")
+  //       .attrTween("d", arcTween(arcBody))
+  //       .style("fill", function(d) { return color(d.value); });
+  //
+  //   field.select(".arc-center")
+  //       .attrTween("d", arcTween(arcCenter));
+  //
+  //   field.select(".arc-text")
+  //       .text(function(d) { return d.text; });
+  // }
+  //
+  // function arcTween(arc) {
+  //   return function(d) {
+  //     var i = d3.interpolateNumber(d.previousValue, d.value);
+  //     return function(t) {
+  //       d.value = i(t);
+  //       return arc(d);
+  //     };
+  //   };
+  // }
+  //
+  // function fields() {
+  //   var now = new Date;
+  //   return [
+  //     {index: .7, text: formatSecond(now), value: now.getSeconds() / 60},
+  //     {index: .6, text: formatMinute(now), value: now.getMinutes() / 60},
+  //     {index: .5, text: formatHour(now),   value: now.getHours() / 24},
+  //     {index: .3, text: formatDay(now),    value: now.getDay() / 7},
+  //     {index: .2, text: formatDate(now),   value: (now.getDate() - 1) / (32 - new Date(now.getYear(), now.getMonth(), 32).getDate())},
+  //     {index: .1, text: formatMonth(now),  value: now.getMonth() / 12}
+  //   ];
+  // }
 
-  var formatSecond = d3.time.format("%-S seconds"),
-      formatMinute = d3.time.format("%-M minutes"),
-      formatHour = d3.time.format("%-H hours"),
-      formatDay = d3.time.format("%A"),
-      formatDate = function(d) { d = d.getDate(); switch (10 <= d && d <= 19 ? 10 : d % 10) { case 1: d += "st"; break; case 2: d += "nd"; break; case 3: d += "rd"; break; default: d += "th"; break; } return d; },
-      formatMonth = d3.time.format("%B");
+  // // EXAMPLE 3: A CHLOROPLETH map
 
-  var color = d3.scale.linear()
-      .range(["hsl(-180,60%,50%)", "hsl(180,60%,50%)"])
-      .interpolate(function(a, b) { var i = d3.interpolateString(a, b); return function(t) { return d3.hsl(i(t)); }; });
+  // var map = d3.geomap.choropleth()
+  //     .geofile('/d3-geomap/topojson/countries/USA.json')
+  //     .projection(d3.geo.albersUsa)
+  //     .column('2012')
+  //     .unitId('fips')
+  //     .scale(1000)
+  //     .legend(true);
+  //
+  // d3.csv('/data/venture-capital.csv', function(error, data) {
+  //     d3.select('#map')
+  //         .datum(data)
+  //         .call(map.draw, map);
+  // });
 
-  var arcBody = d3.svg.arc()
-      .startAngle(0)
-      .endAngle(function(d) { return d.value * 2 * Math.PI; })
-      .innerRadius(function(d) { return d.index * radius; })
-      .outerRadius(function(d) { return (d.index + spacing) * radius; })
-      .cornerRadius(6);
+  // // EXAMPLE 4: TUTORIALS FOLLOWING
 
-  var arcCenter = d3.svg.arc()
-      .startAngle(0)
-      .endAngle(function(d) { return d.value * 2 * Math.PI; })
-      .innerRadius(function(d) { return (d.index + spacing / 2) * radius; })
-      .outerRadius(function(d) { return (d.index + spacing / 2) * radius; });
+  // d3.selectAll("p").style("color", function() {
+  //   return "hsl(" + Math.random() * 360 + ",100%,50%)";
+  // }); // randomly assign colors to p elements!
+  //
+  // // update
+  // var p = d3.select("body")
+  //   .selectAll("p")
+  //   .data([4, 8, 15, 16, 23, 42])
+  //     .text(function(d) { return d; });
+  //
+  // // enter
+  // p.enter().append("p")
+  //   .text(function(d) { return "You're at" + d;});
+  //
+  // // exit
+  //
+  // p.exit().remove();
 
-  var svg = d3.select("body").append("svg")
-      .attr("width", width)
-      .attr("height", height)
-    .append("g")
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+  // TUTORIAL via https://bost.ocks.org/mike/bar/
 
-  var field = svg.selectAll("g")
-      .data(fields)
-    .enter().append("g");
+  // setting the data
+  var barChartData = [ 4, 8, 15, 16, 23, 42, 5, 8 ];
 
-  field.append("path")
-      .attr("class", "arc-body");
+  // setting a scale
+  var x = d3.scale.linear()
+    .domain([0, d3.max(barChartData)])
+    .range([0, 420]);
 
-  field.append("path")
-      .attr("id", function(d, i) { return "arc-center-" + i; })
-      .attr("class", "arc-center");
+  // creating the chart (note this depends on CSS ready)
+  var chart = d3.select(".chart");
+  var bar = chart.selectAll("div");
+  var barUpdate = bar.data(barChartData);
+  var barEnter = barUpdate.enter().append("div");
+  barEnter.style("width", function(d) { return x(d) + "px"; });
+  barEnter.text(function(d) { return d; });
+  barEnter.sort();
 
-  field.append("text")
-      .attr("dy", ".35em")
-      .attr("dx", ".75em")
-      .style("text-anchor", "start")
-    .append("textPath")
-      .attr("startOffset", "50%")
-      .attr("class", "arc-text")
-      .attr("xlink:href", function(d, i) { return "#arc-center-" + i; });
-
-  tick();
-
-  d3.select(self.frameElement).style("height", height + "px");
-
-  function tick() {
-    if (!document.hidden) field
-        .each(function(d) { this._value = d.value; })
-        .data(fields)
-        .each(function(d) { d.previousValue = this._value; })
-      .transition()
-        .ease("elastic")
-        .duration(500)
-        .each(fieldTransition);
-
-    setTimeout(tick, 1000 - Date.now() % 1000);
-  }
-
-  function fieldTransition() {
-    var field = d3.select(this).transition();
-
-    field.select(".arc-body")
-        .attrTween("d", arcTween(arcBody))
-        .style("fill", function(d) { return color(d.value); });
-
-    field.select(".arc-center")
-        .attrTween("d", arcTween(arcCenter));
-
-    field.select(".arc-text")
-        .text(function(d) { return d.text; });
-  }
-
-  function arcTween(arc) {
-    return function(d) {
-      var i = d3.interpolateNumber(d.previousValue, d.value);
-      return function(t) {
-        d.value = i(t);
-        return arc(d);
-      };
-    };
-  }
-
-  function fields() {
-    var now = new Date;
-    return [
-      {index: .7, text: formatSecond(now), value: now.getSeconds() / 60},
-      {index: .6, text: formatMinute(now), value: now.getMinutes() / 60},
-      {index: .5, text: formatHour(now),   value: now.getHours() / 24},
-      {index: .3, text: formatDay(now),    value: now.getDay() / 7},
-      {index: .2, text: formatDate(now),   value: (now.getDate() - 1) / (32 - new Date(now.getYear(), now.getMonth(), 32).getDate())},
-      {index: .1, text: formatMonth(now),  value: now.getMonth() / 12}
-    ];
-  }
 });
