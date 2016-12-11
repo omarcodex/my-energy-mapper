@@ -1,7 +1,17 @@
 $( document ).ready(function() {
 
-  //
-  // d3.geo.tile=function(){function t(){var t=Math.max(Math.log(n)/Math.LN2-8,0),h=Math.round(t+e),o=Math.pow(2,t-h+8),u=[(r[0]-n/2)/o,(r[1]-n/2)/o],l=[],c=d3.range(Math.max(0,Math.floor(-u[0])),Math.max(0,Math.ceil(a[0]/o-u[0]))),M=d3.range(Math.max(0,Math.floor(-u[1])),Math.max(0,Math.ceil(a[1]/o-u[1])));return M.forEach(function(t){c.forEach(function(a){l.push([a,t,h])})}),l.translate=u,l.scale=o,l}var a=[960,500],n=256,r=[a[0]/2,a[1]/2],e=0;return t.size=function(n){return arguments.length?(a=n,t):a},t.scale=function(a){return arguments.length?(n=a,t):n},t.translate=function(a){return arguments.length?(r=a,t):r},t.zoomDelta=function(a){return arguments.length?(e=+a,t):e},t};
+  var countries = [
+    {name: "Angola", population: 6},
+    {name: "Azerbaijan", population: 10} ,
+    {name: "United States", population: 310},
+    {name: "Japan", population: 60},
+    {name: "Brazil", population: 300}
+  ];
+
+  function name(d)
+ { return d.name;};
+
+   // d3.geo.tile=function(){function t(){var t=Math.max(Math.log(n)/Math.LN2-8,0),h=Math.round(t+e),o=Math.pow(2,t-h+8),u=[(r[0]-n/2)/o,(r[1]-n/2)/o],l=[],c=d3.range(Math.max(0,Math.floor(-u[0])),Math.max(0,Math.ceil(a[0]/o-u[0]))),M=d3.range(Math.max(0,Math.floor(-u[1])),Math.max(0,Math.ceil(a[1]/o-u[1])));return M.forEach(function(t){c.forEach(function(a){l.push([a,t,h])})}),l.translate=u,l.scale=o,l}var a=[960,500],n=256,r=[a[0]/2,a[1]/2],e=0;return t.size=function(n){return arguments.length?(a=n,t):a},t.scale=function(a){return arguments.length?(n=a,t):n},t.translate=function(a){return arguments.length?(r=a,t):r},t.zoomDelta=function(a){return arguments.length?(e=+a,t):e},t};
   //
   //
   // var width = Math.max(960, window.innerWidth),
@@ -235,14 +245,61 @@ $( document ).ready(function() {
   var x = d3.scale.linear()
     .domain([0, d3.max(barChartData)])
     .range([0, 420]);
+  //
+  // // creating the chart (note this depends on CSS ready)
+  // var chart = d3.select(".chart");
+  // var bar = chart.selectAll("div");
+  // var barUpdate = bar.data(barChartData);
+  // var barEnter = barUpdate.enter().append("div");
+  // barEnter.style("width", function(d) { return x(d) + "px"; });
+  // barEnter.text(function(d) { return d; });
+  // barEnter.sort();
 
-  // creating the chart (note this depends on CSS ready)
-  var chart = d3.select(".chart");
-  var bar = chart.selectAll("div");
-  var barUpdate = bar.data(barChartData);
-  var barEnter = barUpdate.enter().append("div");
-  barEnter.style("width", function(d) { return x(d) + "px"; });
-  barEnter.text(function(d) { return d; });
-  barEnter.sort();
+  var width = 420;
+    barHeight = 20;
+
+  var chart = d3.select(".chart")
+    .attr("width", width)
+    .attr("height", barHeight * barChartData.length);
+
+  var bar = chart.selectAll("g")
+    .data(barChartData)
+    .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; })
+
+  bar.append("rect")
+    .attr("width", x)
+    .attr("height", barHeight - 1);
+
+  bar.append("text")
+    .attr("x", function(d) { return x(d) - 3; })
+    .attr("y", barHeight / 2)
+    .attr("dy", ".35em")
+    .text(function(d) { return d; });
+
+// example from https://bost.ocks.org/mike/circles/
+
+var svg = d3.select("svg#two");
+var circle = svg.selectAll("circle")
+    .data([32, 57, 112, 293]);
+
+circle.style("fill", "steelBlue");
+circle.attr("r", function(d) {return Math.sqrt(d); });
+circle.attr("cx", function(d, index) { return index * 100 + 30; })
+
+var circleEnter = circle.enter().append("circle");
+
+circleEnter.attr("cy", 60);
+circleEnter.style("fill", "steelBlue");
+circleEnter.attr("cx", function(d, i) { return i * 100 + 30; });
+circleEnter.attr("r", function(d) { return Math.sqrt(d); });
+
+var circle = svg.selectAll("circle")
+  .data([32, 57]);
+
+  circle.exit().transition().duration(2000)
+      .attr("r", 0)
+      .remove();
 
 });
+$
