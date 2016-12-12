@@ -476,35 +476,68 @@ var stateFinder = function(givenState, stateEnergy) {
     }
 };
 
-  console.log(stateEnergy);
+  // console.log(stateEnergy);
 
   $("path").on("click", function() {
+
+    d3.selectAll("svg#one > g").remove(); // clearing prior loading.
+
     var currentPath = $(this);
-    // console.log("clicked!");
     // console.log($(this).attr("id"));
     var currentState = $(this).attr("id");
     var currentStateData = stateFinder(currentState, stateEnergy);
+    var currentStateConsumption = currentStateData["Consumption per Capita, Million Btu"];
+    var currentStateConsumptionRank = currentStateData["Consumption per Capita, Rank"];
+
+    var dataArray = [
+      currentStateConsumption,
+      currentStateConsumptionRank
+    ];
+
     $(this).css('fill', "hsl(62,100%," + (currentStateData["Consumption per Capita, Rank"]/50*100) +"%)");
-    console.log(currentStateData);
+
+    // Displaying current selection data in the paragraphs:
+
     $("#stateDisplay").text("State: " + currentStateData.State);
+
     $("#perCapita").text("\n\nConsumption per Capita (M. BTU): " + currentStateData["Consumption per Capita, Million Btu"]);
+
     $("#perCapitaRank").text("\n\nConsumption per Capita (Rank out of 50): " + currentStateData["Consumption per Capita, Rank"]);
+
+    console.log(dataArray);
+
+    // setting the data
+    var barChartData = dataArray;
+
+    // setting a scale
+    var x = d3.scale.linear()
+      .domain([0, d3.max(barChartData)])
+      .range([0, 420]);
+
+    var width = 420;
+      barHeight = 45;
+
+    var chart = d3.select(".chart")
+      .attr("width", width)
+      .attr("height", barHeight * 2);
+
+    var bar = chart.selectAll("g")
+      .data(barChartData)
+      .enter().append("g")
+        .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; })
+
+    bar.append("rect")
+      .attr("width", x)
+      .attr("height", barHeight - 1);
+
+    bar.append("text")
+      .attr("x", function(d) { return x(d) - 3; })
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .text(function(d) { return d; });
+
   });
 
-  // $('#TX').on("click", function() {
-  //     $(this).css('fill', 'yellow');
-  //     var stateClick = (stateFinder("TX", stateEnergy));
-  //     console.log(stateClick);
-  //   });
-  //
-  // $('#CA').on("click", function() {
-  //     $(this).css('fill', 'green')});
-  // $('#NY').on("click", function() {
-  //     $(this).css('fill', 'green')});
-
-// var stateConsumption = function () {
-//   return stateEnergy[i]
-// };
 
   // // EXAMPLE 4: TUTORIALS FOLLOWING
 
@@ -528,13 +561,6 @@ var stateFinder = function(givenState, stateEnergy) {
 
   // TUTORIAL via https://bost.ocks.org/mike/bar/
 
-  // setting the data
-  var barChartData = [ 4, 8, 15, 16, 23, 42, 5, 8 ];
-
-  // setting a scale
-  var x = d3.scale.linear()
-    .domain([0, d3.max(barChartData)])
-    .range([0, 420]);
 
   // // creating the chart (note this depends on CSS ready)
   // var chart = d3.select(".chart");
@@ -545,27 +571,7 @@ var stateFinder = function(givenState, stateEnergy) {
   // barEnter.text(function(d) { return d; });
   // barEnter.sort();
 
-  var width = 420;
-    barHeight = 20;
 
-  var chart = d3.select(".chart")
-    .attr("width", width)
-    .attr("height", barHeight * barChartData.length);
-
-  var bar = chart.selectAll("g")
-    .data(barChartData)
-    .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; })
-
-  bar.append("rect")
-    .attr("width", x)
-    .attr("height", barHeight - 1);
-
-  bar.append("text")
-    .attr("x", function(d) { return x(d) - 3; })
-    .attr("y", barHeight / 2)
-    .attr("dy", ".35em")
-    .text(function(d) { return d; });
 
 // example from https://bost.ocks.org/mike/circles/
 
