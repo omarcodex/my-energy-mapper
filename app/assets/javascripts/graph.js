@@ -500,9 +500,9 @@ var stateFinder = function(givenState, stateEnergy) {
 
     $("#stateDisplay").text("State: " + currentStateData.State);
 
-    $("#perCapita").text("\n\nConsumption per Capita (M. BTU): " + currentStateData["Consumption per Capita, Million Btu"]);
+    $("#perCapita").text("\n\nAmount: " + currentStateData["Consumption per Capita, Million Btu"] +  " (Millions of BTUs)");
 
-    $("#perCapitaRank").text("\n\nConsumption per Capita (Rank out of 50): " + currentStateData["Consumption per Capita, Rank"]);
+    $("#perCapitaRank").text("Rank: " + currentStateData["Consumption per Capita, Rank"] + " out of 50");
 
     console.log(dataArray);
 
