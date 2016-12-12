@@ -107,3 +107,17 @@
 }
 
 /* more tutorial */
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+#dataDisplayer {
+
+  display: flex;
+}
+
+#textDisplayer {
+  width: 25 vh;
+  border: 1px dotted black;
+}

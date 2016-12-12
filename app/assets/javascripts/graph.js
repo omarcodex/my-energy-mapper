@@ -480,18 +480,15 @@ var stateFinder = function(givenState, stateEnergy) {
 
   $("path").on("click", function() {
     var currentPath = $(this);
-    $(this).css('fill', 'yellow');
+    $(this).css('fill', "hsl(62,100%,62%)");
     // console.log("clicked!");
     // console.log($(this).attr("id"));
     var currentState = $(this).attr("id");
     var currentStateData = stateFinder(currentState, stateEnergy);
     console.log(currentStateData);
-    $("#dataDisplayer").text(currentStateData.State +
-      "\n\nConsumption per Capita (M BTU):" +
-      currentStateData["Consumption per Capita, Million Btu"] +
-      "\n\nConsumption per Capita (Rank):" +
-      currentStateData["Consumption per Capita, Rank"]
-    );
+    $("#stateDisplay").text(currentStateData.State);
+    $("#perCapita").text("\n\nConsumption per Capita (M BTU):" + currentStateData["Consumption per Capita, Million Btu"]);
+    $("#perCapitaRank").text("\n\nConsumption per Capita (Rank):" + currentStateData["Consumption per Capita, Rank"]);
   });
 
   // $('#TX').on("click", function() {
