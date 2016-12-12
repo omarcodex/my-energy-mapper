@@ -15,68 +15,6 @@
  */
 
 
-/* example 1 */
-
- body {
-   margin: 0;
- }
-
- .map {
-   position: relative;
-   overflow: hidden;
- }
-
- .layer {
-   position: absolute;
- }
-
- .tile {
-   pointer-events: none;
-   position: absolute;
-   width: 256px;
-   height: 256px;
- }
-
- .info {
-   position: absolute;
-   bottom: 10px;
-   left: 10px;
- }
-
- /* example 2 */
-
- /*body {
-   background: #222;
-   margin: auto;
-   width: 960px;
- }
-
- .arc-text {
-   font: 16px sans-serif;
- }
-
- .arc-center {
-   fill: none;
- }
-
- #credit {
-   position: absolute;
-   font: 10px sans-serif;
-   right: 10px;
-   bottom: 10px;
-   color: #ddd;
- }
-
- #credit a {
-   color: inherit;
- }*/
-
- /* example 3 */
-/*
- .counties {
-  fill: none;
-}
-
 .states {
   fill: none;
   stroke: #fff;
@@ -107,6 +45,11 @@
 }
 
 /* more tutorial */
+
+body {
+
+  background-color: #a0adc1;
+}
 
 h2 {
   display: flex;

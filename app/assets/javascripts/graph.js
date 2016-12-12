@@ -480,15 +480,15 @@ var stateFinder = function(givenState, stateEnergy) {
 
   $("path").on("click", function() {
     var currentPath = $(this);
-    $(this).css('fill', "hsl(62,100%,62%)");
     // console.log("clicked!");
     // console.log($(this).attr("id"));
     var currentState = $(this).attr("id");
     var currentStateData = stateFinder(currentState, stateEnergy);
+    $(this).css('fill', "hsl(62,100%," + (currentStateData["Consumption per Capita, Rank"]/50*100) +"%)");
     console.log(currentStateData);
-    $("#stateDisplay").text(currentStateData.State);
-    $("#perCapita").text("\n\nConsumption per Capita (M BTU):" + currentStateData["Consumption per Capita, Million Btu"]);
-    $("#perCapitaRank").text("\n\nConsumption per Capita (Rank):" + currentStateData["Consumption per Capita, Rank"]);
+    $("#stateDisplay").text("State: " + currentStateData.State);
+    $("#perCapita").text("\n\nConsumption per Capita (M BTU): " + currentStateData["Consumption per Capita, Million Btu"]);
+    $("#perCapitaRank").text("\n\nConsumption per Capita (Rank): " + currentStateData["Consumption per Capita, Rank"]);
   });
 
   // $('#TX').on("click", function() {
@@ -505,7 +505,6 @@ var stateFinder = function(givenState, stateEnergy) {
 // var stateConsumption = function () {
 //   return stateEnergy[i]
 // };
-
 
   // // EXAMPLE 4: TUTORIALS FOLLOWING
 
@@ -569,7 +568,6 @@ var stateFinder = function(givenState, stateEnergy) {
     .text(function(d) { return d; });
 
 // example from https://bost.ocks.org/mike/circles/
-
 
 
 });
