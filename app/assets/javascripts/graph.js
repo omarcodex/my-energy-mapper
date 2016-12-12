@@ -487,8 +487,8 @@ var stateFinder = function(givenState, stateEnergy) {
     $(this).css('fill', "hsl(62,100%," + (currentStateData["Consumption per Capita, Rank"]/50*100) +"%)");
     console.log(currentStateData);
     $("#stateDisplay").text("State: " + currentStateData.State);
-    $("#perCapita").text("\n\nConsumption per Capita (M BTU): " + currentStateData["Consumption per Capita, Million Btu"]);
-    $("#perCapitaRank").text("\n\nConsumption per Capita (Rank): " + currentStateData["Consumption per Capita, Rank"]);
+    $("#perCapita").text("\n\nConsumption per Capita (M. BTU): " + currentStateData["Consumption per Capita, Million Btu"]);
+    $("#perCapitaRank").text("\n\nConsumption per Capita (Rank out of 50): " + currentStateData["Consumption per Capita, Rank"]);
   });
 
   // $('#TX').on("click", function() {

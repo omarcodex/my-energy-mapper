@@ -14,16 +14,7 @@
  *= require_self
  */
 
-
-.states {
-  fill: none;
-  stroke: #fff;
-  stroke-linejoin: round;
-}*/
-
-/* Example 3 chloropleth */
-
-/* example 4 tutorials */
+/* For the D3 JS section */
 
 .chart div {
   font: 10px sans-serif;
@@ -44,23 +35,30 @@
   text-anchor: end;
 }
 
-/* more tutorial */
+/* For the main map section */
 
 body {
 
   background-color: #a0adc1;
+
 }
 
 h2 {
+
   display: flex;
   justify-content: center;
+  
 }
+
 #dataDisplayer {
 
   display: flex;
+
 }
 
 #textDisplayer {
+
   width: 25 vh;
   border: 1px dotted black;
+
 }
