@@ -514,7 +514,7 @@ var stateFinder = function(givenState, stateEnergy) {
       .domain([0, d3.max(barChartData)])
       .range([0, d3.max(barChartData)]);
 
-    var width = 420;
+    var width = 999;
       barHeight = 60;
 
     var chart = d3.select(".chart")
