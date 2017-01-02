@@ -512,10 +512,10 @@ var stateFinder = function(givenState, stateEnergy) {
     // setting a scale
     var x = d3.scale.linear()
       .domain([0, d3.max(barChartData)])
-      .range([0, 420]);
+      .range([0, d3.max(barChartData)]);
 
-    var width = 420;
-      barHeight = 45;
+    var width = 999;
+      barHeight = 60;
 
     var chart = d3.select(".chart")
       .attr("width", width)

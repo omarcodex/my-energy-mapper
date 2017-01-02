@@ -74,3 +74,10 @@ h1, h3, .credits {
   border: 1px dotted black;
 
 }
+
+#one > g:nth-child(1) > text {
+
+  text-size: 4em;
+  color: red;
+
+}
