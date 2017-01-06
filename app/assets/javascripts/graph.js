@@ -468,22 +468,15 @@ var stateEnergy =
 // Matches the name of the state to the data object:
 var stateFinder = function(givenState, stateEnergy) {
   for (var i in stateEnergy) {
-    // console.log(stateEnergy[i]);
-    // console.log(stateEnergy[i].State);
-    // console.log(stateEnergy[i]["Consumption per Capita, Million Btu"]);
-    // console.log(stateEnergy[i]["Consumption per Capita, Rank"]);
     if (stateEnergy[i].State === givenState) { return stateEnergy[i]};
     }
 };
-
-  // console.log(stateEnergy);
 
   $("path").on("click", function() {
 
     d3.selectAll("svg#one > g").remove(); // clearing prior loading.
 
     var currentPath = $(this);
-    // console.log($(this).attr("id"));
     var currentState = $(this).attr("id");
     var currentStateData = stateFinder(currentState, stateEnergy);
     var currentStateConsumption = currentStateData["Consumption per Capita, Million Btu"];
@@ -503,8 +496,6 @@ var stateFinder = function(givenState, stateEnergy) {
     $("#perCapita").text("\n\nAmount: " + currentStateData["Consumption per Capita, Million Btu"] +  " (Millions of BTUs)");
 
     $("#perCapitaRank").text("Rank: " + currentStateData["Consumption per Capita, Rank"] + " out of 50");
-
-    console.log(dataArray);
 
     // setting the data
     var barChartData = dataArray;
